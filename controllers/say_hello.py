@@ -1,6 +1,7 @@
 from flask_restful import Resource
+from controllers.controller_base import ControllerBase
 
-class SayHello(Resource):
+class SayHello(ControllerBase):
     def get(self):
         return {
             'error': 0,
