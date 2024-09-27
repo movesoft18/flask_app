@@ -5,16 +5,16 @@ from classes.errors import APIError, ERROR
 
 class DeviceState(ControllerBase):
     def get(self):
-        try:
-            parser = DeviceState.parser.copy()
-            parser.add_argument('deviceId', type=int, location='args', required=True)
-            args = parser.parse_args()  
-            data = get_device_data(args['deviceId'])
-            if data != None:
-                return self.make_response_str(ERROR.OK, data), 200
-            return self.make_response_str(ERROR.UNKNOWN_DEVICE), 200
-        except Exception as e:
-            return self.make_response_str(ERROR.UNAUTHORIZED), 400
+  
+        parser = DeviceState.parser.copy()
+        parser.add_argument('deviceId', type=int, location='args', required=True)
+        args = parser.parse_args()  
+        data = get_device_data(args['deviceId'])
+        if data != None:
+            return self.make_response_str(ERROR.OK, data), 200
+        return self.make_response_str(ERROR.UNKNOWN_DEVICE), 200
+
+            
             
 
     def post(self):

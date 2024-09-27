@@ -11,11 +11,7 @@ class ControllerBase(Resource):
             # если Bearer token отсутствует или не совпадает то выдаем 401
             args = ControllerBase.parser.parse_args()
             self.abort_if_authorization_error(args['authorization']);
-            # self.response = {
-            #     'error': 0,
-            #     'message': 'Ok',
-            #     'data': None,           
-            # }
+
         except Exception as e:
             abort(401, error = 1, message=APIError.err(ERROR.UNAUTHORIZED), data=None)    
 
