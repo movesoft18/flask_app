@@ -10,6 +10,8 @@ class ERROR(Enum):
     UNKNOWN_DEVICE = 6
     UNABLE_CHANGE = 7
     FAIL_CHANGE = 8
+    UNVALID_USER = 9
+    INTEGRITY_ERROR = 10
     
 class APIError:
     errors = {
@@ -22,6 +24,8 @@ class APIError:
         6:'Неверный идентификатор устройства',
         7:'Невозможно изменить состояние данного устройства',
         8:'Не удалось изменить состояние устройства',
+        9:'Неверное имя пользователя или пароль',
+        10: 'Ошибка целостности БД',
     }
 
     def err(e: ERROR):
