@@ -1,5 +1,5 @@
-from sqlalchemy import DateTime, Column, ForeignKey, Integer, String, SmallInteger
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, SmallInteger
+#from sqlalchemy.orm import relationship
 from app_data.definitions import Base
 
 class AuqaState(Base):
@@ -8,8 +8,6 @@ class AuqaState(Base):
     device_name = Column(String(30))            # фамилия
     device_type = Column(String(30))          # имя
     device_status = Column(SmallInteger)
-
-
 
     # сериализатор
     @property

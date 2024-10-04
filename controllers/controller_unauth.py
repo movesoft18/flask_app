@@ -11,7 +11,7 @@ class ControllerUnauth(Resource):
     def make_response_str(self, error: ERROR = ERROR.OK, data: any = None, message: str = ""):
         return {
             'error': error if type(error) == int else error.value,
-            'message': APIError.err(error) if message == '' else message,
+            'message': APIError.err(error) if message == '' else APIError.err(error) + ' ' + message,
             'data': data,           
             }
     # Общий обработчик исключений

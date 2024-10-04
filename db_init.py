@@ -37,4 +37,4 @@ with Session(autoflush=False, bind=mysql_connection) as db:
     )
     db.add_all([d1, d2, d3])
     db.commit()     # сохраняем изменения
-    print(user.id)   # можно получить установленный id
+    print(user.id, d1.id, d2.id, d3.id)   # можно получить установленный id
