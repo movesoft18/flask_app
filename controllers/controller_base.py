@@ -1,6 +1,7 @@
 from flask_restful import reqparse, abort
 from classes.errors import APIError, ERROR
 from controllers.controller_unauth import ControllerUnauth
+from hashlib import sha256
 from sqlalchemy.orm import Session
 from models.User import User
 
@@ -25,7 +26,7 @@ class ControllerBase(ControllerUnauth):
         items = auth.split(' ')
         if len(items) < 2:
             abort(401, error = 1, message=APIError.err(ERROR.UNAUTHORIZED), data=None)
-        user_token = items[1]
+        user_token = sha256(items[1].encode('utf-8')).hexdigest()
         if not self.is_valid_token(user_token): 
             abort(401, error = 1, message=APIError.err(ERROR.UNAUTHORIZED), data=None)
 

@@ -1,0 +1,15 @@
+pip install alembic
+alembic init migration
+
+в alembic.ini настроить sqlalchemy.url = driver://user:pass@localhost/dbname
+
+в env.py настаиваем 
+
+from app_data.definitions import Base
+from models import User, State
+target_metadata = Base.metadata
+
+генерим начальную миграцию 
+alembic revision --autogenerate -m 'initial'
+
+для обновления до последней миграции используем alembic upgrade head

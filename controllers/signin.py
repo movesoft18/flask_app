@@ -4,6 +4,7 @@ from controllers.controller_unauth import ControllerUnauth
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import MultipleResultsFound, NoResultFound, SQLAlchemyError
 import secrets
+from hashlib import sha256
 from datetime import datetime
 from models.User import User
 
@@ -23,13 +24,14 @@ class SignIn(ControllerUnauth):
                         User.phone == args['phone']
                     ).one()
 
-                if user.password != args['password']:
+                if user.password != sha256(args['password'].encode('utf-8')).hexdigest():
                     return self.make_response_str(ERROR.UNVALID_USER), 200
-                user.token_hash = secrets.token_hex(32)
+                token = secrets.token_hex(32)
+                user.token_hash = sha256(token.encode('utf-8')).hexdigest()
                 user.token_created = datetime.now()
                 db.commit()
                 data = {
-                        'token': user.token_hash,
+                        'token': token,
                 }
                 return self.make_response_str(ERROR.OK, data), 200                
         except NoResultFound as e:
