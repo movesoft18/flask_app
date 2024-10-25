@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime, timedelta
 from random import randint
+from classes.EmailCodeSender import EmailCodeSender
 from models.Candidate import Candidate
 from models.User import User
 
@@ -109,4 +110,13 @@ class SignUp(ControllerUnauth):
         
 
     def send_confirm_code(self, service, confirm_code):
+        notify_obj = EmailCodeSender(
+            'smtp.mail.ru',
+            'aquaservice@mail.ru',
+            465,
+            'my_super_secret_password')
+        notify_obj.send_async(service, 
+            'Подтверждение регистрации',
+             f'Код подтверждения регистрации: {confirm_code}'
+             )
         return True
