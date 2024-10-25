@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 from app_data.definitions import Base
-from models import User, State, Role
+from models import User, State, Role, Candidate
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

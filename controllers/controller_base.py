@@ -40,4 +40,5 @@ class ControllerBase(ControllerUnauth):
                 ).first()
             if user == None:
                 return False
+            self._user_id = user.id
         return True

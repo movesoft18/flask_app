@@ -12,6 +12,9 @@ class ERROR(Enum):
     FAIL_CHANGE = 8
     UNVALID_USER = 9
     INTEGRITY_ERROR = 10
+    PHONE_OR_EMAIL_IN_USE = 11
+    CONFIRMATION_CODE_SEND_ERROR = 12
+    INVALID_CONFIRMATION_CODE = 13
     
 class APIError:
     errors = {
@@ -26,6 +29,9 @@ class APIError:
         8:'Не удалось изменить состояние устройства',
         9:'Неверное имя пользователя или пароль',
         10: 'Ошибка целостности БД',
+        11: 'Пользователь с таким телефоном или email уже существует',
+        12: 'Ошибка отправки кода подтверждения',
+        13: 'Неверный или просроченный код подтверждения',
     }
 
     def err(e: ERROR):
