@@ -15,6 +15,8 @@ class ERROR(Enum):
     PHONE_OR_EMAIL_IN_USE = 11
     CONFIRMATION_CODE_SEND_ERROR = 12
     INVALID_CONFIRMATION_CODE = 13
+    FORBIDDEN = 14
+    CONTENT_TOO_LARGE = 15
     
 class APIError:
     errors = {
@@ -32,6 +34,8 @@ class APIError:
         11: 'Телефон или email уже используется',
         12: 'Ошибка отправки кода подтверждения',
         13: 'Неверный или устаревший код подтверждения',
+        14: 'Доступ запрещен',
+        15: 'Загружаемый контент очень большой',
         
     }
 
