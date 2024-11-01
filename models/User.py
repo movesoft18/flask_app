@@ -27,5 +27,5 @@ class User(Base):
             'middlename': self.middlename,
             'phone': self.phone,
             'email': self.email,
-            'role': self.user_role,
+            'role': self.role.serialize,
         }

@@ -5,6 +5,9 @@ from controllers.device_state import DeviceState
 from controllers.signin import SignIn
 from controllers.signout import SignOut
 from controllers.signup import SignUp
+from controllers.take_photo import GetPhoto
+from controllers.get_video import VideoFeed
+from controllers.user_data import UserData
 
 def InitRoutes(api):
 
@@ -18,3 +21,6 @@ def InitRoutes(api):
     api.add_resource(SignIn, '/api/v1/auth', resource_class_kwargs=additional_params)
     api.add_resource(SignOut, '/api/v1/logout', resource_class_kwargs=additional_params)
     api.add_resource(SignUp, '/api/v1/signup', resource_class_kwargs=additional_params)    
+    api.add_resource(GetPhoto, '/api/v1/take_photo', resource_class_kwargs=additional_params)
+    api.add_resource(VideoFeed, '/api/v1/video_feed', resource_class_kwargs=additional_params)
+    api.add_resource(UserData, '/api/v1/user/<int:user_id>', resource_class_kwargs=additional_params)
