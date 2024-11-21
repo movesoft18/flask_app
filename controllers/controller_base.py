@@ -4,6 +4,7 @@ from controllers.controller_unauth import ControllerUnauth
 from sqlalchemy.orm import Session
 from models.User import User
 from hashlib import sha256
+from flask import session
 
 class ControllerBase(ControllerUnauth):
     parser = reqparse.RequestParser(bundle_errors=True)
@@ -21,6 +22,8 @@ class ControllerBase(ControllerUnauth):
 
     # проверка авторизованности
     def abort_if_authorization_error(self, auth: str):
+        if ('user' in session) and  self.is_valid_user(session['user']):
+            return        
         if not auth:
             abort(401, error = 1, message=APIError.err(ERROR.UNAUTHORIZED), data=None)
         items = auth.split(' ')
@@ -38,6 +41,17 @@ class ControllerBase(ControllerUnauth):
             user = db.query(User)\
                 .filter(
                     User.token_hash == token
+                ).first()
+            if user == None:
+                return False
+            self._user_id = user.id
+        return True
+    
+    def is_valid_user(self, user_id):
+        with Session(autoflush=False, bind=self._connection) as db:
+            user = db.query(User)\
+                .filter(
+                    User.id == user_id
                 ).first()
             if user == None:
                 return False

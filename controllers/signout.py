@@ -4,6 +4,7 @@ from sqlalchemy.exc import MultipleResultsFound, NoResultFound, SQLAlchemyError
 from sqlalchemy.orm import Session
 from classes.errors import ERROR
 from models.User import User
+from flask import session
 
 class SignOut(ControllerBase):
     def post(self):
@@ -16,6 +17,7 @@ class SignOut(ControllerBase):
                 user.token_hash = None
                 user.token_created = None
                 db.commit()
+                session.clear()
             return self.make_response_str(ERROR.OK), 200
         except NoResultFound as e:
             return self.make_response_str(ERROR.INTERNAL_ERROR), 500

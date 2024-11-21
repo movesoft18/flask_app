@@ -11,6 +11,7 @@ from random import randint
 from threading import Thread
 from models.Candidates import Candidate
 from models.User import User
+from flask import session
 
 class SignUp(ControllerUnauth):
     #подтверждение учетной записи
@@ -56,6 +57,7 @@ class SignUp(ControllerUnauth):
                         'token': token,
                         'user_id': user.id,
                 }
+                session['user'] = user.id
                 return self.make_response_str(ERROR.OK, data), 200
         
         except (SQLAlchemyError, Exception) as e:

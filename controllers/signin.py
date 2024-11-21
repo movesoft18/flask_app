@@ -7,6 +7,7 @@ import secrets
 from hashlib import sha256
 from datetime import datetime
 from models.User import User
+from flask import session
 
 class SignIn(ControllerUnauth):
 
@@ -33,6 +34,7 @@ class SignIn(ControllerUnauth):
                 data = {
                         'token': token,
                 }
+                session['user'] = user.id
                 return self.make_response_str(ERROR.OK, data), 200                
         except NoResultFound as e:
             return self.make_response_str(ERROR.UNVALID_USER), 200
