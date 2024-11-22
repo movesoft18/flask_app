@@ -1,3 +1,4 @@
+from flask import session
 from controllers.controller_unauth import ControllerUnauth
 from hashlib import sha256
 import secrets
@@ -56,6 +57,7 @@ class SignUp(ControllerUnauth):
                 data = {
                         'token': token,
                 }
+                session['user'] = user.id
                 return self.make_response_str(ERROR.OK, data), 200
         
         except (SQLAlchemyError, Exception) as e:
