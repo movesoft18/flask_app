@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 from routes import InitRoutes
 import os
 from flask_session import Session
+from app_data.definitions import server_port
 
 app = Flask(__name__)
 api = Api(app)
@@ -19,4 +20,6 @@ app.config['UPLOAD_FOLDER'] = app.config['APP_PATH'] + os.sep + 'dbimages'
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 100
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 5000, debug=True)
+    HOST = os.environ.get('SERVER_HOST', 'localhost')
+    PORT = server_port
+    app.run(HOST, PORT, debug=True)
