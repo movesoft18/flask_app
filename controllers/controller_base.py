@@ -4,7 +4,7 @@ from controllers.controller_unauth import ControllerUnauth
 from sqlalchemy.orm import Session
 from models.User import User
 from hashlib import sha256
-from flask import session
+from flask import session, current_app, request
 
 class ControllerBase(ControllerUnauth):
     parser = reqparse.RequestParser(bundle_errors=True)
@@ -18,6 +18,7 @@ class ControllerBase(ControllerUnauth):
             self.abort_if_authorization_error(args['authorization'])
 
         except Exception as e:
+            current_app.logger.warning(f'Несанкционированная попытка доступа c адреса {request.remote_addr}, маршрут {request.url}. Код ошибки {ERROR.UNAUTHORIZED.value}, Сообщение: {APIError.err(ERROR.UNAUTHORIZED)}')
             abort(401, error = 1, message=APIError.err(ERROR.UNAUTHORIZED),data=None)    
 
     # проверка авторизованности

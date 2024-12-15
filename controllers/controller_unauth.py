@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse, abort
 from classes.errors import APIError, ERROR
 from sqlalchemy.exc import SQLAlchemyError
+from flask import current_app, request
 
 class ControllerUnauth(Resource):
     def __init__(self, **kwargs):
@@ -9,6 +10,16 @@ class ControllerUnauth(Resource):
 
     # формирует шаблон ответа
     def make_response_str(self, error: ERROR = ERROR.OK, data: any = None, message: str = ""):
+        log_type = APIError.err_type(error)
+        if log_type == 1:
+            current_app.logger.info(f'Запрос с {request.remote_addr}, маршрут {request.url}. Ответ - код ошибки {error if type(error) == int else error.value}, Сообщение: {APIError.err(error)} {message}')
+        elif log_type == 2:
+            current_app.logger.warning(f'Запрос с {request.remote_addr}, маршрут {request.url}. Ответ - код ошибки {error if type(error) == int else error.value}, Сообщение: {APIError.err(error)} {message}')
+        elif log_type == 3:
+            current_app.logger.error(f'Запрос с {request.remote_addr}, маршрут {request.url} вызывал ошибку с кодом {error if type(error) == int else error.value}, Сообщение: {APIError.err(error)} {message}')
+        elif log_type == 4:
+            current_app.logger.debug(f'Запрос с {request.remote_addr}, маршрут {request.url}.Ответ - код ошибки {error if type(error) == int else error.value}, Сообщение: {APIError.err(error)} {message}')
+
         return {
             'error': error if type(error) == int else error.value,
             'message': APIError.err(error) if message == '' else APIError.err(error) + ' ' + message,

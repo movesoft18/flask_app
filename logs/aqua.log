@@ -1,0 +1,56 @@
+2024-12-15 21:39:35,939 INFO pid: 6563: Сервер запущен. Id процесса 6563 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:39:40,693 INFO pid: 6602: Сервер запущен. Id процесса 6602 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:40:24,662 INFO pid: 6602: Сервер остановлен. Id процесса 6602 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:40:24,912 INFO pid: 6563: Сервер остановлен. Id процесса 6563 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:42:34,188 INFO pid: 6854: Сервер запущен. Id процесса 6854 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:42:37,724 INFO pid: 6905: Сервер запущен. Id процесса 6905 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:43:10,244 INFO pid: 6905: Сервер остановлен. Id процесса 6905 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:43:10,495 INFO pid: 6854: Сервер остановлен. Id процесса 6854 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:43:30,696 INFO pid: 7049: Сервер запущен. Id процесса 7049 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:43:44,072 INFO pid: 7104: Сервер запущен. Id процесса 7104 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:44:19,759 INFO pid: 7104: Сервер остановлен. Id процесса 7104 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:44:20,012 INFO pid: 7049: Сервер остановлен. Id процесса 7049 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:44:35,446 INFO pid: 7283: Сервер запущен. Id процесса 7283 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:44:36,730 INFO pid: 7299: Сервер запущен. Id процесса 7299 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:45:13,797 INFO pid: 7299: Сервер остановлен. Id процесса 7299 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:45:14,048 INFO pid: 7283: Сервер остановлен. Id процесса 7283 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:46:17,915 INFO pid: 7435: Сервер запущен. Id процесса 7435 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:47:22,188 INFO pid: 7503: Сервер запущен. Id процесса 7503 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:47:48,331 INFO pid: 7697: Сервер запущен. Id процесса 7697 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:48:07,048 INFO pid: 7697: Сервер остановлен. Id процесса 7697 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 21:48:19,722 INFO pid: 7809: Сервер запущен. Id процесса 7809 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 21:48:35,349 INFO pid: 7809: Сервер остановлен. Id процесса 7809 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]
+2024-12-15 22:14:33,540 INFO pid: 9236: Сервер запущен. Id процесса 9236 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 22:15:47,380 ERROR pid: 9236: Exception on /api/v1/auth [POST] [in /home/mov/Desktop/mov/source/flask_app/.venv/lib/python3.10/site-packages/flask/app.py:838]
+Traceback (most recent call last):
+  File "/home/mov/Desktop/mov/source/flask_app/controllers/signin.py", line 38, in post
+    return self.make_response_str(ERROR.OK, data), 200
+  File "/home/mov/Desktop/mov/source/flask_app/controllers/controller_unauth.py", line 15, in make_response_str
+    current_app.logger.info(f'Запрос с {request.remote_addr}, маршрут {request.url}. Ответ - код ошибки {error if type(error) == int else error.value}, Сообщение: {APIError.err(error)} {extra_message}')
+NameError: name 'extra_message' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mov/Desktop/mov/source/flask_app/.venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/mov/Desktop/mov/source/flask_app/.venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/mov/Desktop/mov/source/flask_app/.venv/lib/python3.10/site-packages/flask_restful/__init__.py", line 489, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/mov/Desktop/mov/source/flask_app/.venv/lib/python3.10/site-packages/flask/views.py", line 110, in view
+    return current_app.ensure_sync(self.dispatch_request)(**kwargs)  # type: ignore[no-any-return]
+  File "/home/mov/Desktop/mov/source/flask_app/.venv/lib/python3.10/site-packages/flask_restful/__init__.py", line 604, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/mov/Desktop/mov/source/flask_app/controllers/signin.py", line 44, in post
+    response, code  = self.handle_exceptions(e)
+  File "/home/mov/Desktop/mov/source/flask_app/controllers/controller_unauth.py", line 38, in handle_exceptions
+    return self.make_response_str(ERROR.BAD_REQUEST, None,' - ' + ' '.join(e.args)), 400
+  File "/home/mov/Desktop/mov/source/flask_app/controllers/controller_unauth.py", line 17, in make_response_str
+    current_app.logger.warning(f'Запрос с {request.remote_addr}, маршрут {request.url}. Ответ - код ошибки {error if type(error) == int else error.value}, Сообщение: {APIError.err(error)} {extra_message}')
+NameError: name 'extra_message' is not defined
+2024-12-15 22:18:32,667 INFO pid: 9488: Сервер запущен. Id процесса 9488 [in /home/mov/Desktop/mov/source/flask_app/app.py:27]
+2024-12-15 22:18:37,801 INFO pid: 9488: Запрос с 127.0.0.1, маршрут http://localhost:5000/api/v1/auth. Ответ - код ошибки 0, Сообщение: Ok  [in /home/mov/Desktop/mov/source/flask_app/controllers/controller_unauth.py:15]
+2024-12-15 22:18:49,318 INFO pid: 9488: Запрос с 127.0.0.1, маршрут http://localhost:5000/api/v1/status. Ответ - код ошибки 0, Сообщение: Ok  [in /home/mov/Desktop/mov/source/flask_app/controllers/controller_unauth.py:15]
+2024-12-15 22:19:16,297 INFO pid: 9488: Запрос с 127.0.0.1, маршрут http://localhost:5000/api/v1/status. Ответ - код ошибки 0, Сообщение: Ok  [in /home/mov/Desktop/mov/source/flask_app/controllers/controller_unauth.py:15]
+2024-12-15 22:20:34,886 INFO pid: 9488: Сервер остановлен. Id процесса 9488 [in /home/mov/Desktop/mov/source/flask_app/app.py:29]

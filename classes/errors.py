@@ -39,6 +39,22 @@ class APIError:
         
     }
 
+    debug_error_list = []
+    info_error_list = [0,5,6,11,13,14,15,]
+    warn_error_list = [1,3,9,]
+    error_error_list = [2,4,7,8,10,]
+
     def err(e: ERROR):
         return APIError.errors[e if type(e) == int else e.value]
     
+    def err_type(e: ERROR):
+        er = e if type(e) == int else e.value
+        if er in APIError.info_error_list:
+            return 1
+        if er in APIError.warn_error_list:
+            return 2
+        if er in APIError.error_error_list:
+            return 3
+        if er in  APIError.debug_error_list:
+            return 4
+        return 0
